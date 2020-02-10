@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,10 +21,15 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, WebActivity.class);
-                i.putExtra("url", editText.getText().toString());
-                startActivity(i);
-                finish();
+                if(editText.getText().toString().length() > 0){
+                    Intent i = new Intent(MainActivity.this, WebActivity.class);
+                    i.putExtra("url", editText.getText().toString());
+                    startActivity(i);
+//                    finish();
+                }else{
+                    Toast.makeText(view.getContext(), "Enter a proper IP", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }
